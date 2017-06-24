@@ -44,9 +44,25 @@
 					</tbody>
 				</table>	
 			</div>
-			
-	
 
+			
+			<h3>JSON</h3>
+			<table class="table table-hover">
+				<thead>
+						<tr>
+							<th>Number</th>
+							<th>Account Holder</th>
+							<th>Payment Company</th>
+						</tr>
+					</thead>
+					<tbody ng-repeat="x in paymentMethods">
+						<th>
+							{{x.number}}
+						</th>
+						<td>{{x.paymentHolder}}</td>
+						<td>{{x.paymentCompany}}</td>
+					</tbody>
+			</table>
 		</div>
 		<div class="row" ng-show="credicard">
 			<div class="col-md-6 registro">
