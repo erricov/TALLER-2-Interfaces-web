@@ -30,39 +30,22 @@
 					</div>
 					<thead>
 						<tr>
-							<th>Number</th>
+							<th>ID</th>
+							<th>number</th>
 							<th>Account Holder</th>
 							<th>Payment Company</th>
 						</tr>
 					</thead>
 					<tbody ng-repeat="x in paymentMethods">
 						<th>
-							{{x.number}}
+							{{x.id}}
 						</th>
+						<td>{{x.number}}</td>
 						<td>{{x.paymentHolder}}</td>
 						<td>{{x.paymentCompany}}</td>
 					</tbody>
 				</table>	
-			</div>
-
-			
-			<h3>JSON</h3>
-			<table class="table table-hover">
-				<thead>
-						<tr>
-							<th>Number</th>
-							<th>Account Holder</th>
-							<th>Payment Company</th>
-						</tr>
-					</thead>
-					<tbody ng-repeat="x in paymentMethods">
-						<th>
-							{{x.number}}
-						</th>
-						<td>{{x.paymentHolder}}</td>
-						<td>{{x.paymentCompany}}</td>
-					</tbody>
-			</table>
+			</div>		
 		</div>
 		<div class="row" ng-show="credicard">
 			<div class="col-md-6 registro">
@@ -70,8 +53,12 @@
 				<hr>
 				<form>
 					<div class="form-group">
+						<label for="number" >ID</label>
+						<input type="number" class="form-control" ng-model="id" id="number" disabled="" placeholder="{{contador+1}}">
+					</div>
+					<div class="form-group">
 						<label for="number" >Number</label>
-						<input type="number" class="form-control" ng-model="number" id="number" disabled="" placeholder="{{contador+1}}">
+						<input type="number" class="form-control" ng-model="number" id="number" >
 					</div>
 					<div class="form-group">
 						<label for="ch">Card Holder</label>
@@ -97,27 +84,81 @@
 					<br><br>
 				</form>
 			</div>
+
+
+				<div class="col-md-6">
+				<h3 style="text-align:center;">CreditCard Users</h3>
+				<table class="table table-hover">
+					<thead>
+							<tr>
+								<th>ID</th>
+								<th>Number</th>
+								<th>CardHolder</th>
+								<th>Bynes</th>
+								<th>Type</th>
+								<th>Payment Company</th>
+							</tr>
+						</thead>
+						<tbody ng-repeat="x in customerPaymentCC">
+							<th>
+								{{x.id}}
+							</th>
+							<td>{{x.number}}</td>
+							<td>{{x.holder}}</td>
+							<td>{{x.bynes}}</td>
+							<td>{{x.type}}</td>
+							<td>{{x.paymentCompany.name}}</td>
+						</tbody>
+				</table>
+				</div>
+			
+				
+			
 		</div>
 		
 
 
 
 		<div class="row" ng-show="bankaccount">
-			<div class="col-md-offset-6 col-md-6 registro">
+			<div class="col-md-6">
+			<h3 style="text-align:center;">Bank Account Users</h3>
+				<table class="table table-hover">
+					<thead>
+							<tr>
+								<th>ID</th>
+								<th>Account number</th>
+								<th>BankHolder</th>
+								<th>Email</th>
+								<th>Payment Company</th>
+							</tr>
+						</thead>
+						<tbody ng-repeat="x in customerPaymentBA">
+							<th>
+								{{x.id}}
+							</th>
+							<td>{{x.number}}</td>
+							<td>{{x.holder}}</td>
+							<td>{{x.email}}</td>
+							<td>{{x.paymentCompany.name}}</td>
+						</tbody>
+				</table>
+			</div>
+			
+			<div class=" col-md-6 registro">
 				<h3>Bank Account</h3>
 				<hr>
 				<form>
 					<div class="form-group">
-						<label for="number">Number</label>
-						<input type="number" class="form-control" id="number" ng-model="number" disabled="" placeholder="{{contador+1}}">
+						<label for="number" >ID</label>
+						<input type="number" class="form-control" ng-model="id" id="number" disabled="" placeholder="{{contador+1}}">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="ch">Bank account Holder</label>
 						<input type="text" class="form-control" ng-model="Holder" id="ch">
 					</div>
 					<div class="form-group col-md-6">
-						<label for="bynes">Account number</label>
-						<input type="number" class="form-control" ng-model="an" id="bynes">
+						<label for="ch">Bank account number</label>
+						<input type="text" class="form-control" ng-model="number" id="ch">
 					</div>
 					<div class="form-group">
 						<label for="email">Email</label>
@@ -129,10 +170,14 @@
 							<option ng-repeat="y in paymentCompanies">{{y.name}}</option>
 						</select>
 					</div>
-					<button type="submit" class="btn btn-default btn-lg btn-block" ng-click="addItem()">Pay</button>
+					<button type="submit" class="btn btn-default btn-lg btn-block" ng-click="addItem(); addBank();">Pay</button>
 					<br><br>
 				</form>
 			</div>
+
+			
+				
+			
 		</div>
 	</div>
 

@@ -6,9 +6,9 @@ var app = angular.module("myApp",[]);
 		$scope.credicard = false;
 		$scope.bankaccount = false;
 		$scope.paymentMethods = [
-		{number: '1', paymentHolder: 'Ely', paymentCompany: 'Provincial'},
-		{number: '2', paymentHolder: 'Elvis', paymentCompany: 'Mercantil'},
-		{number: '3', paymentHolder: 'Hector', paymentCompany: 'Banesco'}
+		{id: '1', number: '12428477284', paymentHolder: 'Ely', paymentCompany: 'Provincial'},
+		{id: '2', number: '48294829842', paymentHolder: 'Elvis', paymentCompany: 'Mercantil'},
+		{id: '3', number: '12323233323', paymentHolder: 'Hector', paymentCompany: 'Banesco'}
 		];
 		$scope.paymentCompanies = [
 			{code: '1', name: 'BBVA Provincial'},
@@ -24,19 +24,18 @@ var app = angular.module("myApp",[]);
 			{code: '3', name: 'AmericanExpress'}
 		];
 
-		$scope.customerPayment = {
-			creditCardPm:[{
-				number: '', 
-				cardHolder: '', 
-				bynes: '', 
-				type: '', 
-				paymentCompany:{
-					code: '', 
-					name: ''
-				}
-			}],
-		};
+		$scope.contadorCC = 1;
+		$scope.customerPaymentCC = [
+			{id: '1', number: '3232323', holder: 'Jose', bynes: '342', type: 'VISA', paymentCompany: {name:'Banesco', code: ''}}
+		];
 
+		$scope.contadorBA = 1;
+		$scope.customerPaymentBA = [
+			{id: '1', number: '3232323', holder: 'Jose',  email: 'jose@hotmail.com', paymentCompany: {name:'Banesco', code: ''}}
+		];
+		
+
+		console.log($scope.customerPayment);
 		
 		$scope.agregarp = function(){
 			console.log($scope.agregar);
@@ -56,7 +55,7 @@ var app = angular.module("myApp",[]);
 			} else if ($scope.credicard == true) {
 				$scope.credicard = false;
 			}
-		}
+		};
 
 		$scope.bankaccountf = function(){
 			console.log($scope.bankaccount);
@@ -66,25 +65,52 @@ var app = angular.module("myApp",[]);
 			} else if ($scope.bankaccount == true) {
 				$scope.bankaccount = false;
 			}
-		}
+		};
 
 		$scope.addItem = function () {
 			$scope.contador = $scope.contador + 1;
 			$scope.paymentMethods.push({
-				number: $scope.contador,
+				id: $scope.contador,
+				number: $scope.number,
 				paymentHolder: $scope.Holder,
 				paymentCompany: $scope.paymentCompany
-			})
+			})		
 
+		};
+
+		$scope.addCredi = function () {
+			$scope.contadorCC =  $scope.contadorCC + 1;
+			console.log("si sirve");
+			$scope.customerPaymentCC.push({
+				id: $scope.contadorCC, 
+				number: $scope.number, 
+				holder: $scope.Holder, 
+				bynes: $scope.bynes, 
+				type: $scope.usertype, 
+				paymentCompany: {code: $scope.paymentCompanies.code, name: $scope.paymentCompany}
+				})
+
+			 $scope.number = '';
 			 $scope.Holder = '';
 			 $scope.paymentCompany = '';
 			 $scope.bynes = '';
 			 $scope.usertype = '';
+		};
 
-		}
+		$scope.addBank = function (){
+			$scope.contadorBA = $scope.contadorBA + 1;
+			$scope.customerPaymentBA.push({
+				id: $scope.contadorBA,
+				number: $scope.number,
+				holder: $scope.Holder,
+				email: $scope.email,
+				paymentCompany: {code: '', name: $scope.paymentCompany}
+			})
 
-		$scope.addCredi = function () {
-			
-		}
+			 $scope.number = '';
+			 $scope.Holder = '';
+			 $scope.paymentCompany = '';
+			 $scope.email = '';
+		};
 
 	});
